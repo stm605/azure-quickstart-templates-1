@@ -857,7 +857,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(deployment().name, concat(variables('nestedDeploymentNameNICDB'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameNICDB'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "nicConfigDBLoop",
