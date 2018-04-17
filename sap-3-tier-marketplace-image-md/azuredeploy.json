@@ -482,7 +482,7 @@
   "resources": [
     {
       "apiVersion": "2017-05-10",
-      "name": "[variables('nestedDeploymentNameNSG')]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameNSG'))]",
       "type": "Microsoft.Resources/deployments",
       "condition": "[equals(length(parameters('subnetId')), 0)]",
       "properties": {
@@ -503,7 +503,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[variables('nestedDeploymentNameVnet')]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameVnet'))]",
       "type": "Microsoft.Resources/deployments",
       "condition": "[equals(length(parameters('subnetId')), 0)]",
       "dependsOn": [
@@ -549,7 +549,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNamePIP'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNamePIP'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "pipLoop",
@@ -574,7 +574,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[variables('nestedDeploymentNameLBASCS')]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameLBASCS'))]",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
         "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]"
@@ -618,7 +618,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameNICASCS'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameNICASCS'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "nicConfigASCSLoop",
@@ -677,7 +677,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameProf'), '-ascs-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameProf'), '-ascs-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "osDiskPartsASCSLoop",
@@ -719,7 +719,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameASCS'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameASCS'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "vmASCSLoop",
@@ -810,7 +810,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[variables('nestedDeploymentNameLBDB')]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameLBDB'))]",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
         "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]"
@@ -857,7 +857,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameNICDB'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, concat(variables('nestedDeploymentNameNICDB'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "nicConfigDBLoop",
@@ -914,7 +914,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameProf'), '-db-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameProf'), '-db-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "osDiskPartsDBLoop",
@@ -956,7 +956,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameDB'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameDB'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "vmDBLoop",
@@ -1051,7 +1051,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameNICDI'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameNICDI'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "nicConfigDILoop",
@@ -1106,7 +1106,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameProf'), '-di-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameProf'), '-di-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "osDiskPartsDILoop",
@@ -1148,7 +1148,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "[concat(variables('nestedDeploymentNameDI'), '-', copyIndex())]",
+      "name": "[concat(deployment().name, variables('nestedDeploymentNameDI'), '-', copyIndex())]",
       "type": "Microsoft.Resources/deployments",
       "copy": {
         "name": "vmDILoop",
