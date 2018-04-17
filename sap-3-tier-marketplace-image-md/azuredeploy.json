@@ -507,7 +507,7 @@
       "type": "Microsoft.Resources/deployments",
       "condition": "[equals(length(parameters('subnetId')), 0)]",
       "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameNSG'))]"
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameNSG'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -577,7 +577,7 @@
       "name": "[concat(deployment().name, variables('nestedDeploymentNameLBASCS'))]",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]"
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameVnet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -657,8 +657,8 @@
       "dependsOn": [
         "pipLoop",
         "nicConfigASCSLoop",
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]",
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameLBASCS'))]"
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameVnet'))]",
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameLBASCS'))]"
       ],
       "location": "[resourceGroup().location]",
       "properties": {
@@ -813,7 +813,7 @@
       "name": "[concat(deployment().name, variables('nestedDeploymentNameLBDB'))]",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]"
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameVnet'))]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -894,8 +894,8 @@
         "count": "[variables('dbvmCount')]"
       },
       "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameLBDB'))]",
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]",
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameLBDB'))]",
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameVnet'))]",
         "nicConfigDBLoop"
       ],
       "location": "[resourceGroup().location]",
@@ -1084,7 +1084,7 @@
       "name": "[concat(variables('nicNameDI'), '-', copyindex())]",
       "apiVersion": "2015-06-15",
       "dependsOn": [
-        "[concat('Microsoft.Resources/deployments/', variables('nestedDeploymentNameVnet'))]",
+        "[concat('Microsoft.Resources/deployments/', deployment().name, variables('nestedDeploymentNameVnet'))]",
         "nicConfigDILoop"
       ],
       "copy": {
