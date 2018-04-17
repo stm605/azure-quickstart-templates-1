@@ -667,9 +667,9 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
-              "publicIPAddress": "[reference(concat(variables('nestedDeploymentNameNICASCS'), '-', copyIndex())).outputs.selectedConfiguration.value.publicIPAddress]",
-              "subnet": "[reference(concat(variables('nestedDeploymentNameNICASCS'), '-', copyIndex())).outputs.selectedConfiguration.value.subnet]",
-              "loadBalancerBackendAddressPools": "[reference(variables('nestedDeploymentNameLBASCS')).outputs.nicBackAddressPools.value]"
+              "publicIPAddress": "[reference(concat(deployment().name, variables('nestedDeploymentNameNICASCS'), '-', copyIndex())).outputs.selectedConfiguration.value.publicIPAddress]",
+              "subnet": "[reference(concat(deployment().name, variables('nestedDeploymentNameNICASCS'), '-', copyIndex())).outputs.selectedConfiguration.value.subnet]",
+              "loadBalancerBackendAddressPools": "[reference(concat(deployment().name, variables('nestedDeploymentNameLBASCS'))).outputs.nicBackAddressPools.value]"
             }
           }
         ]
@@ -738,10 +738,10 @@
         },
         "parameters": {
           "imageReference": {
-            "value": "[reference(concat(variables('nestedDeploymentNameProf'), '-ascs-', copyIndex())).outputs.imageReference.value]"
+            "value": "[reference(concat(deployment().name, variables('nestedDeploymentNameProf'), '-ascs-', copyIndex())).outputs.imageReference.value]"
           },
           "osDisk": {
-            "value": "[reference(concat(variables('nestedDeploymentNameProf'), '-ascs-', copyIndex())).outputs.osDisk.value]"
+            "value": "[reference(concat(deployment().name, variables('nestedDeploymentNameProf'), '-ascs-', copyIndex())).outputs.osDisk.value]"
           },
           "osDiskType": {
             "value": "[variables('osDiskType')]"
@@ -905,8 +905,8 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
-              "subnet": "[reference(concat(variables('nestedDeploymentNameNICDB'), '-', copyIndex())).outputs.selectedConfiguration.value.subnet]",
-              "loadBalancerBackendAddressPools": "[reference(variables('nestedDeploymentNameLBDB')).outputs.nicBackAddressPools.value]"
+              "subnet": "[reference(concat(deployment().name, variables('nestedDeploymentNameNICDB'), '-', copyIndex())).outputs.selectedConfiguration.value.subnet]",
+              "loadBalancerBackendAddressPools": "[reference(concat(deployment().name, variables('nestedDeploymentNameLBDB'))).outputs.nicBackAddressPools.value]"
             }
           }
         ]
@@ -975,10 +975,10 @@
         },
         "parameters": {
           "imageReference": {
-            "value": "[reference(concat(variables('nestedDeploymentNameProf'), '-db-', copyIndex())).outputs.imageReference.value]"
+            "value": "[reference(concat(deployment().name, variables('nestedDeploymentNameProf'), '-db-', copyIndex())).outputs.imageReference.value]"
           },
           "osDisk": {
-            "value": "[reference(concat(variables('nestedDeploymentNameProf'), '-db-', copyIndex())).outputs.osDisk.value]"
+            "value": "[reference(concat(deployment().name, variables('nestedDeploymentNameProf'), '-db-', copyIndex())).outputs.osDisk.value]"
           },
           "osDiskType": {
             "value": "[variables('osDiskType')]"
@@ -1098,7 +1098,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
-              "subnet": "[reference(concat(variables('nestedDeploymentNameNICDI'), '-', copyIndex())).outputs.selectedConfiguration.value.subnet]"
+              "subnet": "[reference(concat(deployment().name, variables('nestedDeploymentNameNICDI'), '-', copyIndex())).outputs.selectedConfiguration.value.subnet]"
             }
           }
         ]
@@ -1167,10 +1167,10 @@
         },
         "parameters": {
           "imageReference": {
-            "value": "[reference(concat(variables('nestedDeploymentNameProf'), '-di-', copyIndex())).outputs.imageReference.value]"
+            "value": "[reference(concat(deployment().name, variables('nestedDeploymentNameProf'), '-di-', copyIndex())).outputs.imageReference.value]"
           },
           "osDisk": {
-            "value": "[reference(concat(variables('nestedDeploymentNameProf'), '-di-', copyIndex())).outputs.osDisk.value]"
+            "value": "[reference(concat(deployment().name, variables('nestedDeploymentNameProf'), '-di-', copyIndex())).outputs.osDisk.value]"
           },
           "osDiskType": {
             "value": "[variables('osDiskType')]"
