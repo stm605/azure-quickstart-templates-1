@@ -314,6 +314,22 @@
                         "Windows": "-luns \"0\" -names \"sap\" -paths \"C:\\sql\\data,C:\\sql\\log,c:\\usr\\sap\"  -sizes \"40,50,100\""
                     },
                     "useFastNetwork": false
+                },
+                "ASE": {
+                    "vmSize": "Standard_E2s_v3",
+                    "disks": [
+                        {
+                            "lun": 0,
+                            "caching": "ReadOnly",
+                            "createOption": "Empty",
+                            "diskSizeGB": 256
+                        }
+                    ],
+                    "scriptArguments": {
+                        "Windows": "-luns \"0\" -names \"sap\" -paths \"C:\\sql\\data,C:\\sql\\log,c:\\usr\\sap\"  -sizes \"40,50,100\"",
+                        "Linux": "-luns '0' -names 'ase' -paths '/sybase'  -sizes '100'"
+                    },
+                    "useFastNetwork": false
                 }
             },
             "Small < 2.000 SAPS": {
@@ -798,6 +814,18 @@
             "SQL": [
                 {
                     "name": "ipconfig-sql",
+                    "properties": {
+                        "privateIPAllocationMethod": "Dynamic",
+                        "subnet": {
+                            "id": "[variables('selectedSubnetId')]"
+                        },
+                        "primary": false
+                    }
+                }
+            ],
+            "ASE": [
+                {
+                    "name": "ipconfig-ase",
                     "properties": {
                         "privateIPAllocationMethod": "Dynamic",
                         "subnet": {
