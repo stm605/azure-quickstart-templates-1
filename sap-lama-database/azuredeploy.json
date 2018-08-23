@@ -177,10 +177,7 @@
         }
     },
     "variables": {
-        "zones": ["[parameters('availabilityZone')]"],
-        "emptyZones": [],
-        "selectedZones2": "[if(equals(length(parameters('availabilityZone')), 0), 1,1)]",
-        "selectedZones": "[variables('zones')]",
+        "selectedZones":"[if(equals(length(parameters('availabilityZone')),0), json('null'), array(parameters('availabilityZone')))]",
         "images": {
             "Windows Server 2012 Datacenter": {
                 "sku": "2012-Datacenter",
