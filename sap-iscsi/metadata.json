@@ -1,0 +1,10 @@
+{
+  "$schema": "https://aka.ms/azure-quickstart-templates-metadata-schema#",
+  "type": "QuickStart",
+  "itemDisplayName": "SAP NetWeaver iSCSI server (managed disk)",
+  "description": "This template allows you to deploy an iSCSI server that can be used to provide SBD devices.",
+  "summary": "This template takes a minimum amount of parameters and deploys an iSCSI server that can be used to provide SBD devices.",
+  "githubUsername": "mssedusch",
+  "dateUpdated": "2018-10-17"
+}
+
