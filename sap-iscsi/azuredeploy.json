@@ -208,7 +208,7 @@
       "location": "[parameters('location')]",
       "properties": {
         "hardwareProfile": {
-          "vmSize": "Standard_D2s_v3"
+          "vmSize": "Standard_E2s_v3"
         },
         "osProfile": {
           "computerName": "[parameters('computerName')]",
