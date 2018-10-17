@@ -72,7 +72,7 @@
     "images": {
       "SLES 12": {
         "sku": "12-SP3",
-        "offer": "SLES-SAP",
+        "offer": "SLES",
         "publisher": "SUSE",
         "OSType": "Linux",
         "osDiskSize": 128
