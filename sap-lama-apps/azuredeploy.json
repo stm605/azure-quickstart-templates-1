@@ -207,7 +207,7 @@
         "sapadmId": "[int(parameters('sapadmIdW'))]",
         "sapsysGid": "[int(parameters('sapsysGidW'))]",
         "availabilityZone": "[int(parameters('availabilityZoneW'))]",
-        "selectedZones":"[if(equals(variables('availabilityZone'),0), json('null'), array(variables('availabilityZone')))]",
+        "selectedZones": "[if(equals(variables('availabilityZone'),0), json('null'), array(variables('availabilityZone')))]",
         "images": {
             "Windows Server 2012 Datacenter": {
                 "sku": "2012-Datacenter",
@@ -364,7 +364,8 @@
             {
                 "name": "ipconfig-vm",
                 "properties": {
-                    "privateIPAllocationMethod": "Dynamic",
+                    "privateIPAllocationMethod": "Static",
+                    "privateIpAddress": "[parameters('ipAddress')]",
                     "subnet": {
                         "id": "[variables('selectedSubnetId')]"
                     },
@@ -377,8 +378,7 @@
                 {
                     "name": "ipconfig-di",
                     "properties": {
-                        "privateIPAllocationMethod": "Static",
-                        "privateIpAddress": "[parameters('ipAddress')]",
+                        "privateIPAllocationMethod": "Dynamic",
                         "subnet": {
                             "id": "[variables('selectedSubnetId')]"
                         },
@@ -390,8 +390,7 @@
                 {
                     "name": "ipconfig-di",
                     "properties": {
-                        "privateIPAllocationMethod": "Static",
-                        "privateIpAddress": "[parameters('ipAddress')]",
+                        "privateIPAllocationMethod": "Dynamic",
                         "subnet": {
                             "id": "[variables('selectedSubnetId')]"
                         },
