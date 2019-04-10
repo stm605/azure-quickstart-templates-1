@@ -19,6 +19,13 @@
                 "description": "The computer name. This parameter is also used as virtual machine name. It is required if you want to deploy this template using SAP LaMa."
             }
         },
+        "ipAddress": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
         "osType": {
             "type": "string",
             "allowedValues": [
@@ -370,7 +377,8 @@
                 {
                     "name": "ipconfig-di",
                     "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
+                        "privateIPAllocationMethod": "Static",
+                        "privateIpAddress": "[parameters('ipAddress')]",
                         "subnet": {
                             "id": "[variables('selectedSubnetId')]"
                         },
@@ -382,7 +390,8 @@
                 {
                     "name": "ipconfig-di",
                     "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
+                        "privateIPAllocationMethod": "Static",
+                        "privateIpAddress": "[parameters('ipAddress')]",
                         "subnet": {
                             "id": "[variables('selectedSubnetId')]"
                         },
