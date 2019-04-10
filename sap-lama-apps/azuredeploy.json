@@ -21,7 +21,6 @@
         },
         "ipAddress": {
             "type": "string",
-            "defaultValue": "",
             "metadata": {
                 "description": ""
             }
@@ -99,6 +98,7 @@
         "deployEmptyTargetW": {
             "type": "string",
             "defaultValue": "false",
+            "allowedValues": ["false", "true"],
             "metadata": {
                 "description": "You can deploy an empty target if you want to use the virtual machine as a target for an instance relocate or similar. In this case, no additional disks or IP configurations are attached."
             }
@@ -183,6 +183,41 @@
         "location": {
             "type": "string",
             "defaultValue": "",
+            "allowedValues": [
+                "",
+                "eastasia",
+                "southeastasia",
+                "centralus",
+                "eastus",
+                "eastus2",
+                "westus",
+                "northcentralus",
+                "southcentralus",
+                "northeurope",
+                "westeurope",
+                "japanwest",
+                "japaneast",
+                "brazilsouth",
+                "australiaeast",
+                "australiasoutheast",
+                "southindia",
+                "centralindia",
+                "westindia",
+                "canadacentral",
+                "canadaeast",
+                "uksouth",
+                "ukwest",
+                "westcentralus",
+                "westus2",
+                "koreacentral",
+                "koreasouth",
+                "francecentral",
+                "francesouth",
+                "australiacentral",
+                "australiacentral2",
+                "southafricanorth",
+                "southafricawest"
+            ],
             "metadata": {
                 "description": "Location for all resources."
             }
