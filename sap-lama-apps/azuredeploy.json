@@ -19,6 +19,26 @@
                 "description": "The computer name. This parameter is also used as virtual machine name. It is required if you want to deploy this template using SAP LaMa."
             }
         },
+        "ipAddressHost": {
+            "type": "string",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "ipAddressVirtual": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
+        "dnsSearchPath": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
         "osType": {
             "type": "string",
             "allowedValues": [
@@ -355,7 +375,8 @@
             {
                 "name": "ipconfig-vm",
                 "properties": {
-                    "privateIPAllocationMethod": "Dynamic",
+                    "privateIPAllocationMethod": "Static",                    
+                    "privateIpAddress": "[parameters('ipAddressHost')]",
                     "subnet": {
                         "id": "[variables('selectedSubnetId')]"
                     },
@@ -368,7 +389,8 @@
                 {
                     "name": "ipconfig-di",
                     "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
+                        "privateIPAllocationMethod": "Static",                    
+                        "privateIpAddress": "[parameters('ipAddressVirtual')]",
                         "subnet": {
                             "id": "[variables('selectedSubnetId')]"
                         },
@@ -380,7 +402,8 @@
                 {
                     "name": "ipconfig-di",
                     "properties": {
-                        "privateIPAllocationMethod": "Dynamic",
+                        "privateIPAllocationMethod": "Static",                    
+                        "privateIpAddress": "[parameters('ipAddressVirtual')]",
                         "subnet": {
                             "id": "[variables('selectedSubnetId')]"
                         },
@@ -389,7 +412,7 @@
                 }
             ]
         },
-        "selectedIPConfig": "[concat(variables('basicIPConfig'), if(parameters('deployEmptyTarget'), json('[]'), variables('databaseIPConfig')[variables('internalOSType')]))]",
+        "selectedIPConfig": "[concat(variables('basicIPConfig'), if(equals(length(parameters('ipAddressVirtual')), 0), json('[]'), variables('databaseIPConfig')[variables('internalOSType')]))]",
         "osSecurityRules": {
             "Windows": [
                 {
@@ -424,7 +447,8 @@
                 }
             ]
         },
-        "selectedSecurityRules": "[variables('osSecurityRules')[variables('internalOSType')]]"
+        "selectedSecurityRules": "[variables('osSecurityRules')[variables('internalOSType')]]",
+        "dnsSearchPathParameter": "[if(equals(length(parameters('dnsSearchPath')), 0), '', concat('-resolve ', parameters('dnsSearchPath')))]"
     },
     "resources": [
         {
@@ -544,7 +568,7 @@
                     ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "[concat(variables('csExtensionscriptCall'), ' ', variables('osConfigs')[variables('internalOSType')].scriptArguments)]"
+                    "commandToExecute": "[concat(variables('csExtensionscriptCall'), ' ', variables('osConfigs')[variables('internalOSType')].scriptArguments, ' ' , variables('dnsSearchPathParameter'))]"
                 }
             }
         },
