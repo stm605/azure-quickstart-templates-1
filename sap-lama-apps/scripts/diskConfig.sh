@@ -226,6 +226,8 @@ fi
 sed -i --follow-symlinks -e 's/ResourceDisk.EnableSwap=.*/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
 sed -i --follow-symlinks -e 's/ResourceDisk.SwapSizeMB=.*/ResourceDisk.SwapSizeMB=4000/g' /etc/waagent.conf
 
-reboot -f
+fallocate --length 4GiB /mnt/resource/swapfile
+chmod 0600 /mnt/resource/swapfile
+mkswap /mnt/resource/swapfile
 
 exit
