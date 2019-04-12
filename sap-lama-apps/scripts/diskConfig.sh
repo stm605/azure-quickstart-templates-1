@@ -229,5 +229,6 @@ sed -i --follow-symlinks -e 's/ResourceDisk.SwapSizeMB=.*/ResourceDisk.SwapSizeM
 fallocate --length 4GiB /mnt/resource/swapfile
 chmod 0600 /mnt/resource/swapfile
 mkswap /mnt/resource/swapfile
+swapon /mnt/resource/swapfile
 
 exit
