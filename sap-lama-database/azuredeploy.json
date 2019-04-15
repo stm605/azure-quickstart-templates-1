@@ -19,6 +19,13 @@
                 "description": "The computer name. This parameter is also used as virtual machine name. It is required if you want to deploy this template using SAP LaMa."
             }
         },
+        "dnsSearchPath": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
         "osType": {
             "type": "string",
             "allowedValues": [
@@ -193,16 +200,16 @@
                 "osDiskSize": 128
             },
             "Windows Server 2012 R2 Datacenter": {
-                "sku": "2012-R2-Datacenter",
-                "offer": "WindowsServer",
-                "publisher": "MicrosoftWindowsServer",
+                "sku": "Enterprise",
+                "offer": "SQL2016SP2-WS2012R2",
+                "publisher": "MicrosoftSQLServer",
                 "OSType": "Windows",
                 "osDiskSize": 128
             },
             "Windows Server 2016 Datacenter": {
-                "sku": "2016-Datacenter",
-                "offer": "WindowsServer",
-                "publisher": "MicrosoftWindowsServer",
+                "sku": "Enterprise",
+                "offer": "SQL2017-WS2016",
+                "publisher": "MicrosoftSQLServer",
                 "OSType": "Windows",
                 "osDiskSize": 128
             },
@@ -857,7 +864,9 @@
                 }
             ]
         },
-        "selectedSecurityRules": "[variables('osSecurityRules')[variables('internalOSType')]]"
+        "selectedSecurityRules": "[variables('osSecurityRules')[variables('internalOSType')]]",
+        "dnsSearchPathParameter": "[if(equals(length(parameters('dnsSearchPath')), 0), '', concat('-resolve ', parameters('dnsSearchPath')))]",
+        "internalScriptArguments": "[if(parameters('deployEmptyTarget'), '', variables('sizes')[parameters('sapSystemSize')][parameters('dbType')].scriptArguments[variables('internalOSType')])]"
     },
     "resources": [
         {
@@ -975,7 +984,7 @@
                     ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "[concat(variables('csExtensionscriptCall'), ' ', variables('sizes')[parameters('sapSystemSize')][parameters('dbType')].scriptArguments[variables('internalOSType')])]"
+                    "commandToExecute": "[concat(variables('csExtensionscriptCall'), ' ', variables('internalScriptArguments'), ' ' , variables('dnsSearchPathParameter'))]"
                 }
             }
         },

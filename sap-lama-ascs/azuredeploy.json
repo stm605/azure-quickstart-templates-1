@@ -19,6 +19,13 @@
                 "description": "The computer name. This parameter is also used as virtual machine name. It is required if you want to deploy this template using SAP LaMa."
             }
         },
+        "dnsSearchPath": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": ""
+            }
+        },
         "osType": {
             "type": "string",
             "allowedValues": [
@@ -412,7 +419,9 @@
                 }
             ]
         },
-        "selectedSecurityRules": "[variables('osSecurityRules')[variables('internalOSType')]]"
+        "selectedSecurityRules": "[variables('osSecurityRules')[variables('internalOSType')]]",
+        "dnsSearchPathParameter": "[if(equals(length(parameters('dnsSearchPath')), 0), '', concat('-resolve ', parameters('dnsSearchPath')))]",
+        "internalScriptArguments": "[if(parameters('deployEmptyTarget'), '', variables('osConfigs')[variables('internalOSType')].scriptArguments)]"
     },
     "resources": [
         {
@@ -531,7 +540,7 @@
                     ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "[concat(variables('csExtensionscriptCall'), ' ', variables('osConfigs')[variables('internalOSType')].scriptArguments)]"
+                    "commandToExecute": "[concat(variables('csExtensionscriptCall'), ' ', variables('internalScriptArguments'), ' ' , variables('dnsSearchPathParameter'))]"
                 }
             }
         },

@@ -165,6 +165,7 @@ luns=""
 names=""
 paths=""
 sizes=""
+resolveConfSearchPath=""
 
 while true; 
 do
@@ -176,6 +177,8 @@ do
     "-paths")  paths=$2;shift 2;log "found paths"
     ;;
     "-sizes")  sizes=$2;shift 2;log "found sizes"
+    ;;
+    "-resolve")  resolveConfSearchPath=$2;shift 2;log "found resolveConfSearchPath"
     ;;
     *) log "unknown parameter $1";shift 1;
     ;;
@@ -213,6 +216,11 @@ then
   done
 else
   log "count not equal"
+fi
+
+if [[ "$resolveConfSearchPath" ]];
+then 
+  sed -i --follow-symlinks -e "s/search .*/search $resolveConfSearchPath/g" /etc/resolv.conf
 fi
 
 exit
