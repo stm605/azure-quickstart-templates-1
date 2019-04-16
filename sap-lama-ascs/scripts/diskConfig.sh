@@ -238,4 +238,6 @@ then
   systemctl enable nfsserver
 fi
 
+chmod -t /tmp -R
+
 exit

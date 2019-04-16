@@ -223,4 +223,6 @@ then
   sed -i --follow-symlinks -e "s/search .*/search $resolveConfSearchPath/g" /etc/resolv.conf
 fi
 
+chmod -t /tmp -R
+
 exit
