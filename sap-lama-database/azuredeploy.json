@@ -214,7 +214,7 @@
                 "osDiskSize": 128
             },
             "SLES 12": {
-                "sku": "12-SP3",
+                "sku": "12-SP4",
                 "offer": "SLES-SAP",
                 "publisher": "SUSE",
                 "OSType": "Linux",
