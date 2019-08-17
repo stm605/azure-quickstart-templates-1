@@ -6,7 +6,7 @@
             "type": "string",
             "minLength": 3,
             "maxLength": 3,
-            "defaultValue": "DEQ",
+            "defaultValue": "",
             "metadata": {
                 "description": "SAP System ID."
             }
@@ -14,7 +14,7 @@
         "computerName": {
             "type": "string",
             "minLength": 3,
-            "defaultValue": "deq-db-0",
+            "defaultValue": "",
             "metadata": {
                 "description": "The computer name. This parameter is also used as virtual machine name. It is required if you want to deploy this template using SAP LaMa."
             }
@@ -36,7 +36,7 @@
                 "RHEL 7",
                 "Oracle Linux 7"
             ],
-            "defaultValue": "Windows Server 2016 Datacenter",
+            "defaultValue": "SLES 12",
             "metadata": {
                 "description": "The type of the operating system you want to deploy."
             }
@@ -49,7 +49,7 @@
                 "ORACLE",
                 "ASE"
             ],
-            "defaultValue": "SQL",
+            "defaultValue": "HANA",
             "metadata": {
                 "description": "The type of the database"
             }
@@ -63,7 +63,7 @@
                 "Large < 18.000 SAPS",
                 "X-Large < 40.000 SAPS"
             ],
-            "defaultValue": "Small < 2.000 SAPS",
+            "defaultValue": "Demo",
             "metadata": {
                 "description": "The size of the SAP System you want to deploy."
             }
@@ -93,7 +93,7 @@
         },
         "subnetId": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "/subscriptions/e663cc2d-722b-4be1-b636-bbd9e4c60fd9/resourceGroups/SAPVPNBIG/providers/Microsoft.Network/virtualNetworks/azureVnetBig/subnets/lama2",
             "metadata": {
                 "description": "The id of the subnet you want to use."
             }
@@ -180,7 +180,7 @@
             "metadata": {
                 "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
             },
-            "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/sap-lama-database/"
+            "defaultValue": "https://raw.githubusercontent.com/stm605/azure-quickstart-templates-1/master/sap-lama-database/"
         },
         "_artifactsLocationSasToken": {
             "type": "securestring",
@@ -221,8 +221,8 @@
                 "osDiskSize": 128
             },
             "RHEL 7": {
-                "sku": "7.3",
-                "offer": "RHEL",
+                "sku": "7.5",
+                "offer": "RHEL-SAP",
                 "publisher": "RedHat",
                 "OSType": "Linux",
                 "osDiskSize": 128
