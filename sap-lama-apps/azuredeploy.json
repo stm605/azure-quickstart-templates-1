@@ -104,7 +104,7 @@
         },
         "subnetId": {
             "type": "string",
-            "defaultValue": "/subscriptions/e663cc2d-722b-4be1-b636-bbd9e4c60fd9/resourceGroups/SAPVPNBIG/providers/Microsoft.Network/virtualNetworks/azureVnetBig/subnets/lama2",
+            "defaultValue": "/subscriptions/e663cc2d-722b-4be1-b636-bbd9e4c60fd9/resourceGroups/SAPVPNBIG/providers/Microsoft.Network/virtualNetworks/azureVnetBig/subnets/lama",
             "metadata": {
                 "description": "The id of the subnet you want to use."
             }
