@@ -245,19 +245,21 @@ sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/g
 
 mkdir /var/bak
 
-cp /etc/resolve.conf /var/bak
+cp /etc/resolv.conf /var/bak
 cp /etc/krb5.conf /var/bak
 cp /etc/samba/smb.conf /var/bak
 cp /etc/nsswitch.conf /var/bak
 cp /etc/openldap/ldap.conf /var/bak
 cp /etc/sssd/sssd.conf /var/bak
 
-cp /mnt/conf/resolve.conf /etc
+cp /mnt/conf/resolv.conf /etc
 cp /mnt/conf/krb5.conf /etc
 cp /mnt/conf/smb.conf /etc/samba
 cp /mnt/conf/nsswitch.conf /etc
 cp /mnt/conf/ldap.conf /etc/openldap
 cp /mnt/conf/sssd.conf /etc/sssd
+
+sudo umount /mnt
 
 systemctl stop nscd.service
 systemctl disable nscd.service
