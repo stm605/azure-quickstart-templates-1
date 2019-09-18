@@ -300,7 +300,7 @@
                 "script": "[uri(parameters('_artifactsLocation'), concat('scripts/diskConfig.sh', parameters('_artifactsLocationSasToken')))]",
                 "scriptCall": "sh diskConfig.sh",
                 "disks": [],
-                "scriptArguments": ""
+                "scriptArguments": "[concat('-password ',parameters('adminPasswordOrKey'))]"
             }
         },
         "cseExtPublisher": "[variables('osConfigs')[variables('internalOSType')].Publisher]",

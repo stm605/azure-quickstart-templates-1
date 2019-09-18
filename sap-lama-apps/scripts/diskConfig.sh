@@ -166,7 +166,7 @@ names=""
 paths=""
 sizes=""
 resolveConfSearchPath=""
-
+pwd=""
 while true; 
 do
   case "$1" in
@@ -179,6 +179,8 @@ do
     "-sizes")  sizes=$2;shift 2;log "found sizes"
     ;;
     "-resolve")  resolveConfSearchPath=$2;shift 2;log "found resolveConfSearchPath"
+    ;;
+     "-password")  pwd=$2;shift 2;log "password found"
     ;;
     *) log "unknown parameter $1";shift 1;
     ;;
@@ -264,5 +266,14 @@ sudo umount /mnt
 systemctl stop nscd.service
 systemctl disable nscd.service
 
+echo $pwd | kinit adminuser
+
+net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k
+
+pam-config --add --sss
+pam-config --add --mkhomedir
+
+systemctl enable sssd.service
+systemctl start sssd.service
 
 exit
