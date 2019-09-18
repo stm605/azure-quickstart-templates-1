@@ -243,20 +243,20 @@ zypper install -y libgcc_s1 libstdc++6 libatomic1
 # zypper install -y openldap2-client
 # zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
 
+mkdir /var/bak
+cp /etc/resolv.conf /var/bak
+cp /mnt/conf/resolv.conf /etc
+
 yast2 ayast_setup setup filename=/mnt/conf/adjoin.xml dopackages="yes"
 
 zypper update -y
 
-# mkdir /var/bak
-
-# cp /etc/resolv.conf /var/bak
 # cp /etc/krb5.conf /var/bak
 # cp /etc/samba/smb.conf /var/bak
 # cp /etc/nsswitch.conf /var/bak
 # cp /etc/openldap/ldap.conf /var/bak
 # cp /etc/sssd/sssd.conf /var/bak
 
-# cp /mnt/conf/resolv.conf /etc
 # cp /mnt/conf/krb5.conf /etc
 # cp /mnt/conf/smb.conf /etc/samba
 # cp /mnt/conf/nsswitch.conf /etc
