@@ -266,7 +266,8 @@ sudo umount /mnt
 systemctl stop nscd.service
 systemctl disable nscd.service
 
-echo $pwd | kinit adminuser
+echo $pwd >> /tmp/pwd.txt
+echo $pwd | kinit adminuser >> /tmp/kinit.txt
 
 net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k
 
