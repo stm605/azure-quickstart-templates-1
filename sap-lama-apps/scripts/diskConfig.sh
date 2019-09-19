@@ -236,10 +236,10 @@ swapon /mnt/resource/swapfile
 chmod -t /tmp -R
 
 zypper install -y libgcc_s1 libstdc++6 libatomic1
-zypper install -y krb5-client
-zypper install -y samba-client
-zypper install -y openldap2-client
-zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
+# zypper install -y krb5-client
+# zypper install -y samba-client
+# zypper install -y openldap2-client
+#zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
 zypper update -y
 
 sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/global-repo /mnt
@@ -254,16 +254,16 @@ cp /etc/openldap/ldap.conf /var/bak
 cp /etc/sssd/sssd.conf /var/bak
 
 cp /mnt/conf/resolv.conf /etc
-cp /mnt/conf/krb5.conf /etc
-cp /mnt/conf/smb.conf /etc/samba
-cp /mnt/conf/nsswitch.conf /etc
-cp /mnt/conf/ldap.conf /etc/openldap
-cp /mnt/conf/sssd.conf /etc/sssd
+# cp /mnt/conf/krb5.conf /etc
+# cp /mnt/conf/smb.conf /etc/samba
+# cp /mnt/conf/nsswitch.conf /etc
+#cp /mnt/conf/ldap.conf /etc/openldap
+# cp /mnt/conf/sssd.conf /etc/sssd
 
-systemctl stop nscd.service
-systemctl disable nscd.service
+# systemctl stop nscd.service
+# systemctl disable nscd.service
 
-echo "$pwd" >> /tmp/pwd.txt
+# echo "$pwd" >> /tmp/pwd.txt
 # echo '$pwd' | kinit adminuser >> /tmp/kinit.txt
 
 # net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k
