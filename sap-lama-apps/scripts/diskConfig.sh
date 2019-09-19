@@ -267,15 +267,15 @@ systemctl stop nscd.service
 systemctl disable nscd.service
 
 echo "$pwd" >> /tmp/pwd.txt
-echo 'Hana1234567!' | kinit adminuser >> /tmp/kinit.txt
+# echo 'Hana1234567!' | kinit adminuser >> /tmp/kinit.txt
 
-net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k
+# net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k
 
-pam-config --add --sss
-pam-config --add --mkhomedir
+# pam-config --add --sss
+# pam-config --add --mkhomedir
 
-systemctl enable sssd.service
-systemctl start sssd.service
+# systemctl enable sssd.service
+# systemctl start sssd.service
 
 sudo umount /mnt
 
