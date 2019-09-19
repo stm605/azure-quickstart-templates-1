@@ -274,6 +274,6 @@ echo "$pwd" >> /tmp/pwd.txt
 # systemctl enable sssd.service
 # systemctl start sssd.service
 
-sudo umount /mnt
+# sudo umount /mnt
 
 exit
