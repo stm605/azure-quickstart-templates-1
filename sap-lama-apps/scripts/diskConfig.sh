@@ -263,16 +263,16 @@ cp /mnt/conf/sssd.conf /etc/sssd
 systemctl stop nscd.service
 systemctl disable nscd.service
 
-# kinit adminuser@MSSAPVPN.LOCAL -k -t /mnt/conf/adminuser.keytab
+kinit adminuser@MSSAPVPN.LOCAL -k -t /mnt/conf/adminuser.keytab >> /tmp/log.txt
 
-# net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k
+net ads join osname=”SLES” osVersion=12 osServicePack=”Latest” --no-dns-updates -k >> /tmp/log.txt
 
-# pam-config --add --sss
-# pam-config --add --mkhomedir
+pam-config --add --sss
+pam-config --add --mkhomedir
 
-# systemctl enable sssd.service
-# systemctl start sssd.service
+systemctl enable sssd.service
+systemctl start sssd.service
 
-# sudo umount /mnt
+sudo umount /mnt
 
 exit
