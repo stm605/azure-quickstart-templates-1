@@ -235,16 +235,16 @@ swapon /mnt/resource/swapfile
 
 chmod -t /tmp -R
 
-zypper install -y libgcc_s1 libstdc++6 libatomic1
-zypper install -y krb5-client
-zypper install -y samba-client
-zypper install -y openldap2-client
-zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
-zypper update -y
+sudo zypper install -y libgcc_s1 libstdc++6 libatomic1
+sudo zypper install -y krb5-client
+sudo zypper install -y samba-client
+sudo zypper install -y openldap2-client
+sudo zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
+sudo zypper update -y
 
 sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/global-repo /mnt
 
-mkdir /var/bak
+sudo mkdir /var/bak
 
 cp /etc/resolv.conf /var/bak
 cp /etc/krb5.conf /var/bak
@@ -260,18 +260,18 @@ cp /mnt/conf/nsswitch.conf /etc
 cp /mnt/conf/ldap.conf /etc/openldap
 cp /mnt/conf/sssd.conf /etc/sssd
 
-systemctl stop nscd.service
-systemctl disable nscd.service
+sudo systemctl stop nscd.service
+sudo systemctl disable nscd.service
 
-kinit adminuser@MSSAPVPN.LOCAL -k -t /mnt/conf/adminuser.keytab &> /tmp/kinit.txt
+sudo kinit adminuser@MSSAPVPN.LOCAL -k -t /mnt/conf/adminuser.keytab &> /tmp/kinit.txt
 
-net ads join osname="SLES" osVersion=12 osServicePack="Latest" --no-dns-updates -k &> /tmp/netadsjoin.txt
+sudo net ads join osname="SLES" osVersion=12 osServicePack="Latest" --no-dns-updates -k &> /tmp/netadsjoin.txt
 
-pam-config --add --sss
-pam-config --add --mkhomedir
+sudo pam-config --add --sss
+sudo pam-config --add --mkhomedir
 
-systemctl enable sssd.service
-systemctl start sssd.service
+sudo systemctl enable sssd.service
+sudo systemctl start sssd.service
 
 sudo umount /mnt
 
