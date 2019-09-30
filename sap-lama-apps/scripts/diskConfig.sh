@@ -225,7 +225,7 @@ then
   sed -i --follow-symlinks -e "s/search .*/search $resolveConfSearchPath/g" /etc/resolv.conf
 fi
 
-echo whomai > /tmp/whoami.txt
+whoami > /tmp/whoami.txt
 
 sudo sed -i --follow-symlinks -e 's/ResourceDisk.EnableSwap=.*/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
 sudo sed -i --follow-symlinks -e 's/ResourceDisk.SwapSizeMB=.*/ResourceDisk.SwapSizeMB=4000/g' /etc/waagent.conf
