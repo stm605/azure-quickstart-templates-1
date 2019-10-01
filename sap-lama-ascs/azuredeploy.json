@@ -57,6 +57,7 @@
         },
         "adminUsername": {
             "type": "string",
+            "defaultValue": "adminuser",
             "metadata": {
                 "description": "Username for the Virtual Machine."
             }
@@ -80,21 +81,21 @@
         },
         "subnetId": {
             "type": "string",
-            "defaultValue": "/subscriptions/e663cc2d-722b-4be1-b636-bbd9e4c60fd9/resourceGroups/SAPVPNBIG/providers/Microsoft.Network/virtualNetworks/azureVnetBig/subnets/lama2",
+            "defaultValue": "/subscriptions/e663cc2d-722b-4be1-b636-bbd9e4c60fd9/resourceGroups/SAPVPNBIG/providers/Microsoft.Network/virtualNetworks/azureVnetBig/subnets/lama",
             "metadata": {
                 "description": "The id of the subnet you want to use."
             }
         },
         "deployEmptyTarget": {
             "type": "bool",
-            "defaultValue": false,
+            "defaultValue": true,
             "metadata": {
                 "description": "You can deploy an empty target if you want to use the virtual machine as a target for an instance relocate or similar. In this case, no additional disks or IP configurations are attached."
             }
         },
         "sapArtifactsLocation": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "https://mslama.blob.core.windows.net/lamastaging/linux/",
             "metadata": {
                 "description": "The location of the SAR archives. The location should contain archives for SAPCAR, SAP Host Agent, SAPACEXT,  Microsoft Visual C++ Redistributable and the Microsoft ODBC driver for SQL Server."
             }
@@ -104,25 +105,25 @@
             "metadata": {
                 "description": "The sasToken required to access sapArtifactsLocation."
             },
-            "defaultValue": ""
+            "defaultValue": "?sv=2017-07-29&sr=c&sig=rSSSm5kwkuRolh4bTBbHUW0mdDK2kIbvws7D8RYFb38%3D&spr=https&se=9999-12-31T23%3A59%3A59Z&sp=r"
         },
         "sapcarFilename": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "sapcar",
             "metadata": {
                 "description": "The filename for the sapcar application that matches the operating system you deploy. sapcar is used to extract the archives you provide in other parameters."
             }
         },
         "sapHostAgentArchiveFilename": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "SAPHOSTAGENT42_42-20009394.SAR",
             "metadata": {
                 "description": "The filename of the SAP Host Agent archive. SAP Host Agent is deployed as part of this template depoyment."
             }
         },
         "sapacExtArchiveFilename": {
             "type": "string",
-            "defaultValue": "",
+            "defaultValue": "SAPACEXT_48-20010403.SAR",
             "metadata": {
                 "description": "The filename of the SAP Adaptive Extensions. SAP Note 2343511 lists the minimum patch level required for Azure."
             }
@@ -136,7 +137,7 @@
         },
         "sapadmPassword": {
             "type": "securestring",
-            "defaultValue": "",
+            "defaultValue": "Hana1234567!",
             "metadata": {
                 "description": "Password for the sapadm account."
             }

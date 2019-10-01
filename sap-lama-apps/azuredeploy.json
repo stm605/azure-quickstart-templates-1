@@ -14,14 +14,14 @@
         "computerName": {
             "type": "string",
             "minLength": 3,
-            "defaultValue": "msslesdi08",
+            "defaultValue": "",
             "metadata": {
                 "description": "The computer name. This parameter is also used as virtual machine name. It is required if you want to deploy this template using SAP LaMa."
             }
         },
         "ipAddressHost": {
             "type": "string",
-            "defaultValue": "10.79.225.30",
+            "defaultValue": "",
             "metadata": {
                 "description": ""
             }

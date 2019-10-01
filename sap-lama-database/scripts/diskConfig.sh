@@ -223,6 +223,56 @@ then
   sed -i --follow-symlinks -e "s/search .*/search $resolveConfSearchPath/g" /etc/resolv.conf
 fi
 
-chmod -t /tmp -R
+whoami > /tmp/whoami.txt
+
+sudo sed -i --follow-symlinks -e 's/ResourceDisk.EnableSwap=.*/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
+sudo sed -i --follow-symlinks -e 's/ResourceDisk.SwapSizeMB=.*/ResourceDisk.SwapSizeMB=4000/g' /etc/waagent.conf
+
+sudo fallocate --length 4GiB /mnt/resource/swapfile
+sudo chmod 0600 /mnt/resource/swapfile
+sudo mkswap /mnt/resource/swapfile
+sudo swapon /mnt/resource/swapfile
+
+sudo chmod -t /tmp -R
+
+sudo zypper install -y libgcc_s1 libstdc++6 libatomic1
+sudo zypper install -y krb5-client
+sudo zypper install -y samba-client
+sudo zypper install -y openldap2-client
+sudo zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
+sudo zypper update -y
+
+sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/global-repo /mnt
+
+sudo mkdir /var/bak
+
+sudo cp /etc/resolv.conf /var/bak
+sudo cp /etc/krb5.conf /var/bak
+sudo cp /etc/samba/smb.conf /var/bak
+sudo cp /etc/nsswitch.conf /var/bak
+sudo cp /etc/openldap/ldap.conf /var/bak
+sudo cp /etc/sssd/sssd.conf /var/bak
+
+sudo cp /mnt/conf/resolv.conf /etc
+sudo cp /mnt/conf/krb5.conf /etc
+sudo cp /mnt/conf/smb.conf /etc/samba
+sudo cp /mnt/conf/nsswitch.conf /etc
+sudo cp /mnt/conf/ldap.conf /etc/openldap
+sudo cp /mnt/conf/sssd.conf /etc/sssd
+
+sudo systemctl stop nscd.service
+sudo systemctl disable nscd.service
+
+sudo kinit adminuser@MSSAPVPN.LOCAL -k -t /mnt/conf/adminuser.keytab &> /tmp/kinit.txt
+
+sudo net ads join osname="SLES" osVersion=12 osServicePack="Latest" --no-dns-updates -k &> /tmp/netadsjoin.txt
+
+sudo pam-config --add --sss
+sudo pam-config --add --mkhomedir
+
+sudo systemctl enable sssd.service
+sudo systemctl start sssd.service
+
+sudo umount /mnt
 
 exit
