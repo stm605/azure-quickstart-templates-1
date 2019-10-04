@@ -526,7 +526,6 @@
             "name": "[concat(variables('vmName'), '/', variables('cseExtName'))]",
             "apiVersion": "2017-12-01",
             "location": "[parameters('location')]",
-            "condition": "[not(parameters('deployEmptyTarget'))]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
             ],
