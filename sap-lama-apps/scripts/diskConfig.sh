@@ -275,6 +275,9 @@ sudo pam-config --add --mkhomedir
 sudo systemctl enable sssd.service
 sudo systemctl start sssd.service
 
-sudo umount /mnt
+echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
+/usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile
+
+# sudo umount /mnt
 
 exit

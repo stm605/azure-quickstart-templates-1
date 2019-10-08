@@ -142,7 +142,7 @@
         },
         "sapHostAgentArchiveFilename": {
             "type": "string",
-            "defaultValue": "SAPHOSTAGENT42_42-20009394.SAR",
+            "defaultValue": "SAPHOSTAGENT44_44-20009394.SAR",
             "metadata": {
                 "description": "The filename of the SAP Host Agent archive. SAP Host Agent is deployed as part of this template depoyment."
             }

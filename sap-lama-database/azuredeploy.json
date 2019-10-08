@@ -130,7 +130,7 @@
         },
         "sapHostAgentArchiveFilename": {
             "type": "string",
-            "defaultValue": "SAPHOSTAGENT42_42-20009394.SAR",
+            "defaultValue": "SAPHOSTAGENT44_44-20009394.SAR",
             "metadata": {
                 "description": "The filename of the SAP Host Agent archive. SAP Host Agent is deployed as part of this template depoyment."
             }
@@ -971,7 +971,6 @@
             "name": "[concat(variables('vmName'), '/', variables('cseExtName'))]",
             "apiVersion": "2017-12-01",
             "location": "[parameters('location')]",
-            "condition": "[not(parameters('deployEmptyTarget'))]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
             ],

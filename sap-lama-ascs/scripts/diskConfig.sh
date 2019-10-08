@@ -288,6 +288,6 @@ sudo pam-config --add --mkhomedir
 sudo systemctl enable sssd.service
 sudo systemctl start sssd.service
 
-sudo umount /mnt
+# sudo umount /mnt
 
 exit

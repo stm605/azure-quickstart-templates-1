@@ -116,14 +116,14 @@
         },
         "sapHostAgentArchiveFilename": {
             "type": "string",
-            "defaultValue": "SAPHOSTAGENT42_42-20009394.SAR",
+            "defaultValue": "SAPHOSTAGENT44_44-20009394.SAR",
             "metadata": {
                 "description": "The filename of the SAP Host Agent archive. SAP Host Agent is deployed as part of this template depoyment."
             }
         },
         "sapacExtArchiveFilename": {
             "type": "string",
-            "defaultValue": "SAPACEXT_48-20010403.SAR",
+            "defaultValue": "SAPACEXT-20010403.SAR",
             "metadata": {
                 "description": "The filename of the SAP Adaptive Extensions. SAP Note 2343511 lists the minimum patch level required for Azure."
             }
