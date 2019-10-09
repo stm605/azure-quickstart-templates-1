@@ -246,6 +246,9 @@ sudo zypper update -y
 
 sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/global-repo /mnt
 
+# echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
+# /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile
+
 sudo mkdir /var/bak
 
 sudo cp /etc/resolv.conf /var/bak
@@ -274,9 +277,6 @@ sudo pam-config --add --mkhomedir
 
 sudo systemctl enable sssd.service
 sudo systemctl start sssd.service
-
-echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
-/usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile
 
 # sudo umount /mnt
 

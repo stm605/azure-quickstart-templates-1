@@ -149,7 +149,7 @@
         },
         "sapacExtArchiveFilename": {
             "type": "string",
-            "defaultValue": "SAPACEXT_48-20010403.SAR",
+            "defaultValue": "SAPACEXT-20010403.SAR",
             "metadata": {
                 "description": "The filename of the SAP Adaptive Extensions. SAP Note 2343511 lists the minimum patch level required for Azure."
             }
