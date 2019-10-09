@@ -246,8 +246,8 @@ sudo zypper update -y
 
 sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/global-repo /mnt
 
-# echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
-# /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile
+echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
+/usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile
 
 sudo mkdir /var/bak
 
