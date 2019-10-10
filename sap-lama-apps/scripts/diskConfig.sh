@@ -235,17 +235,18 @@ sudo chmod 0600 /mnt/resource/swapfile
 sudo mkswap /mnt/resource/swapfile
 sudo swapon /mnt/resource/swapfile
 
+sudo echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
+sudo cat /usr/sap/hostctrl/exe/host_profile &> /tmp/host_profile.txt
+sudo /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile &> /tmp/sapacext.txt
+
 sudo zypper install -y libgcc_s1 libstdc++6 libatomic1
 sudo zypper install -y krb5-client
 sudo zypper install -y samba-client
 sudo zypper install -y openldap2-client
 sudo zypper install -y sssd sssd-tools python-sssd-config sssd-ldap sssd-ad
-# sudo zypper update -y
+sudo zypper update -y
 
 sudo mount -t nfs -o rw,hard,rsize=65536,wsize=65536,vers=3,tcp 10.79.227.133:/global-repo /mnt
-
-sudo echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
-sudo /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile
 
 sudo mkdir /var/bak
 
