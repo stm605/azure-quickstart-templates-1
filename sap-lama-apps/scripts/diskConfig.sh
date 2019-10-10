@@ -235,9 +235,6 @@ sudo chmod 0600 /mnt/resource/swapfile
 sudo mkswap /mnt/resource/swapfile
 sudo swapon /mnt/resource/swapfile
 
-sudo echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
-sudo cat /usr/sap/hostctrl/exe/host_profile &> /tmp/host_profile.txt
-sudo /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile &> /tmp/sapacext.txt
 
 sudo zypper install -y libgcc_s1 libstdc++6 libatomic1
 sudo zypper install -y krb5-client
@@ -276,6 +273,11 @@ sudo pam-config --add --mkhomedir
 
 sudo systemctl enable sssd.service
 sudo systemctl start sssd.service
+
+sudo echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
+# sudo cat /usr/sap/hostctrl/exe/host_profile &> /tmp/host_profile.txt
+sudo cp /mnt/conf/host_profile /usr/sap/hostctrl/exe
+sudo /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile &> /tmp/sapacext.txt
 
 sudo chmod -t /tmp -R
 
