@@ -235,18 +235,6 @@ whoami > /tmp/whoami.txt
 #sudo mkswap /mnt/resource/swapfile
 #sudo swapon /mnt/resource/swapfile
 
-sudo cp -f /etc/waagent.conf /etc/waagent.conf.orig
-sudo sedcmd="s/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g"
-sudo sedcmd2="s/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=20480/g"
-sudo cat /etc/waagent.conf | sed $sedcmd | sed $sedcmd2 > /etc/waagent.conf.new
-sudo cp -f /etc/waagent.conf.new /etc/waagent.conf
-
-sudo cp -f /etc/sysconfig/network/ifcfg-eth0 /etc/sysconfig/network/ifcfg-eth0.orig
-sudo sedcmd="s/CLOUD_NETCONFIG_MANAGE="yes"/CLOUD_NETCONFIG_MANAGE="no"/g"
-sudo cat /etc/sysconfig/network/ifcfg-eth0 | sed $sedcmd > /etc/sysconfig/network/ifcfg-eth0.new
-sudo cp -f /etc/sysconfig/network/ifcfg-eth0.new /etc/sysconfig/network/ifcfg-eth0
-
-
 sudo zypper install -y libgcc_s1 libstdc++6 libatomic1
 sudo zypper install -y krb5-client
 sudo zypper install -y samba-client
@@ -284,6 +272,17 @@ sudo pam-config --add --mkhomedir
 
 sudo systemctl enable sssd.service
 sudo systemctl start sssd.service
+
+sudo cp -f /etc/waagent.conf /etc/waagent.conf.orig
+sedcmd="s/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g"
+sedcmd2="s/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=20480/g"
+sudo cat /etc/waagent.conf | sed $sedcmd | sed $sedcmd2 > /etc/waagent.conf.new
+sudo cp -f /etc/waagent.conf.new /etc/waagent.conf
+
+sudo cp -f /etc/sysconfig/network/ifcfg-eth0 /etc/sysconfig/network/ifcfg-eth0.orig
+sedcmd="s/CLOUD_NETCONFIG_MANAGE='yes'/CLOUD_NETCONFIG_MANAGE='no'/g"
+sudo cat /etc/sysconfig/network/ifcfg-eth0 | sed $sedcmd > /etc/sysconfig/network/ifcfg-eth0.new
+sudo cp -f /etc/sysconfig/network/ifcfg-eth0.new /etc/sysconfig/network/ifcfg-eth0
 
 sudo echo "acosprep/no_sar_verification = 1" >> /usr/sap/hostctrl/exe/host_profile
 # sudo cat /usr/sap/hostctrl/exe/host_profile &> /tmp/host_profile.txt
