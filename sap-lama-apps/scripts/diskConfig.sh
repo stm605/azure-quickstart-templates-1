@@ -294,5 +294,5 @@ sudo chmod -t /tmp -R
 
 # sudo umount /mnt
 
-#exit
-shutdown -r 1
+#shutdown -r 1
+exit
