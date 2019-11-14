@@ -284,10 +284,10 @@ sedcmd="s/CLOUD_NETCONFIG_MANAGE='yes'/CLOUD_NETCONFIG_MANAGE='no'/g"
 sudo cat /etc/sysconfig/network/ifcfg-eth0 | sed $sedcmd > /etc/sysconfig/network/ifcfg-eth0.new
 sudo cp -f /etc/sysconfig/network/ifcfg-eth0.new /etc/sysconfig/network/ifcfg-eth0
 
-echo 'acosprep/no_sar_verification = 1' >> /usr/sap/hostctrl/exe/host_profile
+# echo 'acosprep/no_sar_verification = 1' >> /usr/sap/hostctrl/exe/host_profile
 # sudo cat /usr/sap/hostctrl/exe/host_profile &> /tmp/host_profile.txt
 # sudo cp /mnt/conf/host_profile /usr/sap/hostctrl/exe/host_profile
-sudo /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile &> /tmp/sapacext.txt
+# sudo /usr/sap/hostctrl/exe/sapacosprep -a InstallAcext -m /mnt/ha/SAPACEXT.SAR -o FORCE pf=/usr/sap/hostctrl/exe/host_profile &> /tmp/sapacext.txt
 
 sudo chmod -t /tmp -R
 
